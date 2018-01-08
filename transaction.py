@@ -1,5 +1,5 @@
-
 from base import *
+
 class TX(object):
     def __init__(self, parent_tx, _from, to_amounts, sig=""):
         self.parent_tx = parent_tx
@@ -10,11 +10,12 @@ class TX(object):
     def amount_spent(self):
         return sum(a for (_, a) in self.to_amounts)
     def sign(self, sk):
-        return TX(self.parent_tx, self._from, self.to_amounts, sk.sign_deterministic(str(self.tx)))
+        return TX(self.parent_tx, self._from, self.to_amounts,
+                  sk.sign_deterministic(str(self.tx).encode()))
     def verifySig(self):
         vk = VerifyingKey.from_string(self._from)
         try:
-            return vk.verify(self.sig, str(self.tx))
+            return vk.verify(self.sig, str(self.tx).encode())
         except:
             raise ValueError("Sig Bad")
     def hash(self):

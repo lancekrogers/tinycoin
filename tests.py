@@ -25,7 +25,6 @@ vk = sk.get_verifying_key()
 # print BlockHeader.deserialize(BlockHeader(1,block.hash(),3,4).serialize())
 # print BlockHeader(1,block.hash(),3,4).hash()
 
-        
 #print Chain().AddHeader(BlockHeader(1, sha("1"), GENESIS.hash(),  1)).chain
     # def mine(self, time):
     #     if self.nonce == None:
